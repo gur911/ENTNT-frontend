@@ -1,4 +1,4 @@
-# ENTNT_Assignment_Frontend (entnt-frontend-eiiwyzuda-gursewak-singhs-projects-bbae31e7.vercel.app/)
+# ENTNT_Assignment_Frontend (https://entnt-frontend-eiiwyzuda-gursewak-singhs-projects-bbae31e7.vercel.app/)
 
 ## Overview
 
