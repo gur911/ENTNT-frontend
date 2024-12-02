@@ -28,7 +28,7 @@ const CommunicationMethodManagement = () => {
   const fetchMethods = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5001/api/communications"
+        "https://entnt-backend-6c8l.onrender.com/api/communications"
       );
       setMethods(response.data);
     } catch (error) {
@@ -52,12 +52,12 @@ const CommunicationMethodManagement = () => {
     try {
       if (editId) {
         await axios.put(
-          `http://localhost:5001/api/communications/${editId}`,
+          `https://entnt-backend-6c8l.onrender.com/api/communications/${editId}`,
           form
         );
         setEditId(null);
       } else {
-        await axios.post(`http://localhost:5001/api/communications`, form);
+        await axios.post(`https://entnt-backend-6c8l.onrender.com/api/communications`, form);
       }
       setForm({ name: "", description: "", sequence: "", mandatory: false });
       fetchMethods();
@@ -73,7 +73,7 @@ const CommunicationMethodManagement = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/communications/${id}`);
+      await axios.delete(`https://entnt-backend-6c8l.onrender.com/api/communications/${id}`);
       fetchMethods();
     } catch (error) {
       console.error("Failed to delete communication method", error);
