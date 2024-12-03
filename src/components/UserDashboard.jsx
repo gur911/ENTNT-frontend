@@ -62,7 +62,7 @@ const UserDashboard = () => {
   const fetchCommsFromAPI = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5001/api/communications-user"
+        "https://entnt-backend-6c8l.onrender.com/api/communications-user"
       );
       return response.data;
     } catch (error) {
@@ -73,7 +73,7 @@ const UserDashboard = () => {
   const fetchNotificationsFromAPI = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5001/api/notifications"
+        "https://entnt-backend-6c8l.onrender.com/api/notifications"
       );
       return response.data;
     } catch (error) {

@@ -17,7 +17,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post("http://localhost:5001/api/register", formData);
+      const response = await axios.post("https://entnt-backend-6c8l.onrender.com/api/register", formData);
       console.log(response);
       
       //  alert(response.data.message);
