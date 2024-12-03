@@ -17,7 +17,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/login",
+        "https://entnt-backend-6c8l.onrender.com/api/login",
         formData
       );
       console.log(response)
