@@ -62,8 +62,9 @@ const UserDashboard = () => {
   const fetchCommsFromAPI = async () => {
     try {
       const response = await axios.get(
-        "https://entnt-backend-6c8l.onrender.com/api/communications-user"
+        `${process.env.REACT_APP_BACKEND}communications-user`
       );
+      console.log("CCC : ",response.data);
       return response.data;
     } catch (error) {
       console.error("Error fetching communications:", error);
@@ -73,7 +74,7 @@ const UserDashboard = () => {
   const fetchNotificationsFromAPI = async () => {
     try {
       const response = await axios.get(
-        "https://entnt-backend-6c8l.onrender.com/api/notifications"
+        `${process.env.REACT_APP_BACKEND}notifications`
       );
       return response.data;
     } catch (error) {
@@ -86,6 +87,7 @@ const UserDashboard = () => {
       const communicationsData = await fetchCommsFromAPI();
       setCommunications(communicationsData);
       const notifications = await fetchNotificationsFromAPI();
+      console.log(notifications);
       setOver(notifications.filter((item) => item.type === "overdue"));
       setToday(notifications.filter((item) => item.type === "due today"));
     };
@@ -98,7 +100,7 @@ const UserDashboard = () => {
       headerName: "Company Name",
       width: 200,
       renderCell: (params) => (
-        <Typography fontWeight="bold">{params.row.company.name}</Typography>
+        <Typography fontWeight="bold">{params.row.companyName}</Typography>
       ),
     },
     {
@@ -107,7 +109,7 @@ const UserDashboard = () => {
       width: 300,
       renderCell: (params) => (
         <Typography>
-          {`${params.row.type.name} - ${new Date(
+          {`${new Date(
             params.row.date
           ).toLocaleDateString()}`}
         </Typography>
@@ -122,7 +124,7 @@ const UserDashboard = () => {
         nextDate.setDate(nextDate.getDate() + 5);
         return (
           <Typography>
-            {`${params.row.type.name} - ${nextDate.toLocaleDateString()}`}
+            {`${nextDate.toLocaleDateString()}`}
           </Typography>
         );
       },
@@ -157,7 +159,7 @@ const UserDashboard = () => {
                 {over.length > 0 ? (
                   over.map((item, idx) => (
                     <Typography key={idx}>
-                      {idx + 1}. {item.company.name} - {item.message}
+                      {idx + 1}. {item.companyName} - {item.message}
                     </Typography>
                   ))
                 ) : (
@@ -175,7 +177,7 @@ const UserDashboard = () => {
                 {today.length > 0 ? (
                   today.map((item, idx) => (
                     <Typography key={idx}>
-                      {idx + 1}. {item.company.name} - {item.message}
+                      {idx + 1}. {item.comapnyName} - {item.message}
                     </Typography>
                   ))
                 ) : (
@@ -195,7 +197,7 @@ const UserDashboard = () => {
         <div style={{ height: 400, width: "100%" }}>
           <DataGrid
             rows={communications}
-            getRowId={(row) => row._id + row.company.name}
+            getRowId={(row) => row._id + row.companyName}
             columns={columns}
             pageSize={5}
             checkboxSelection

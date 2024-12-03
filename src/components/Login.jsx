@@ -4,11 +4,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  console.log("Backend : ",process.env.REACT_APP_BACKEND);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
+  console.log("Backend : ",process.env.REACT_APP_BACKEND);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,8 +18,9 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      console.log(process.env.REACT_APP_BACKEND);
       const response = await axios.post(
-        "https://entnt-backend-6c8l.onrender.com/api/login",
+        `${process.env.REACT_APP_BACKEND}/login`,
         formData
       );
       console.log(response)

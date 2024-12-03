@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 const CommunicationCalendar = ({ communications }) => {
+  console.log("CC : ",communications);
   const [date, setDate] = useState(new Date());
 
   const handleDateChange = (newDate) => {
@@ -23,7 +24,7 @@ const CommunicationCalendar = ({ communications }) => {
             return (
               <div key={idx}>
                 <p>
-                  {idx+1}. {comm.type.name} - {comm.company.name} - {comm.notes}
+                  {idx+1}. {comm.companyName} - {comm.notes}
                 </p>
               </div>
             );

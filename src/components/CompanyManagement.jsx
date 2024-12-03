@@ -21,7 +21,7 @@ const CompanyManagement = () => {
 
   const fetchCompanies = async () => {
     try {
-      const response = await axios.get("https://entnt-backend-6c8l.onrender.com/api/companies");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND}/companies`);
       setCompanies(response.data);
     } catch (error) {
       console.error("Error fetching companies:", error);
@@ -90,11 +90,11 @@ const CompanyManagement = () => {
       try {
         if (currentCompany) {
           await axios.put(
-            `https://entnt-backend-6c8l.onrender.com/api/companies/edit/${currentCompany._id}`,
+            `${process.env.REACT_APP_BACKEND}companies/edit/${currentCompany._id}`,
             data
           );
         } else {
-          await axios.post(`https://entnt-backend-6c8l.onrender.com/api/companies/add`, data);
+          await axios.post(`${process.env.REACT_APP_BACKEND}companies/add`, data);
         }
         fetchCompanies();
         handleCloseModal();
@@ -109,7 +109,7 @@ const CompanyManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this company?")) {
       try {
-        await axios.delete(`https://entnt-backend-6c8l.onrender.com/api/companies/delete/${id}`);
+        await axios.delete(`${process.env.REACT_APP_BACKEND}companies/delete/${id}`);
         fetchCompanies();
       } catch (error) {
         console.error("Error deleting company:", error);
